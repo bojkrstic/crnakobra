@@ -1,0 +1,5 @@
+# Tehnički instalacioni fajl koji nije deo sajta
+slike/GoranKrstic/*.deb
+
+# Lokalni sistemski fajlovi
+.DS_Store
