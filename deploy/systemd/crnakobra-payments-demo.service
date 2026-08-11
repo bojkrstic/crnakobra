@@ -1,0 +1,17 @@
+[Unit]
+Description=Crna Kobra payment-flow demo
+After=network.target
+
+[Service]
+# Zameniti vrednosti korisnikom i stvarnom putanjom na serveru.
+User=krle
+WorkingDirectory=/home/krle/apps/crnakobra/crnakobra/payments-api
+EnvironmentFile=/etc/crnakobra/payments-demo.env
+ExecStart=/home/krle/apps/crnakobra/crnakobra/payments-api/crnakobra-payments-api
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

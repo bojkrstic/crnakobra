@@ -3,3 +3,6 @@ slike/GoranKrstic/*.deb
 
 # Lokalni sistemski fajlovi
 .DS_Store
+
+# Lokalno stanje i binarni fajlovi Go demo servisa
+payments-api/payments-api
