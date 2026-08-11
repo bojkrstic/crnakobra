@@ -1,0 +1,18 @@
+services:
+  payments-demo:
+    build:
+      context: ./payments-api
+    image: crnakobra/payments-demo:local
+    restart: unless-stopped
+    env_file:
+      - ./payments-api/.env.demo
+    # API je vidljiv samo Nginx-u na istom serveru, ne direktno internetu.
+    ports:
+      - "127.0.0.1:8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

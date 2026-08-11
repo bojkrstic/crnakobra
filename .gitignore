@@ -6,3 +6,4 @@ slike/GoranKrstic/*.deb
 
 # Lokalno stanje i binarni fajlovi Go demo servisa
 payments-api/payments-api
+payments-api/.env.demo

@@ -24,3 +24,16 @@ U stvarnoj integraciji demonstracioni checkout se uklanja, a bankin/PayPal webho
 ## Zaštićeno postavljanje na server
 
 Šabloni za Nginx, systemd i promenljive okruženja nalaze se u `../deploy/`. Demo se postavlja na poseban poddomen i iza Basic Auth zaštite. Ne postavljati ga kao javnu naplatu niti koristiti `DEMO_MODE=true` na produkcionom payment API-ju.
+
+## Docker postavljanje
+
+Ako server koristi Docker, nije potrebno instalirati Go niti koristiti systemd šablon. Iz korena repozitorijuma:
+
+```bash
+cp payments-api/.env.demo.example payments-api/.env.demo
+# U .env.demo postaviti stvarni DEMO_SECRET i javni demo URL.
+docker compose -f docker-compose.demo.yml up -d --build
+docker compose -f docker-compose.demo.yml logs -f
+```
+
+Compose objavljuje port samo kao `127.0.0.1:8080`; Nginx ostaje jedini javni ulaz. Za zaustavljanje demonstracije koristite `docker compose -f docker-compose.demo.yml down`.
