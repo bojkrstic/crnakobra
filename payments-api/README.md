@@ -37,3 +37,10 @@ docker compose -f docker-compose.demo.yml logs -f
 ```
 
 Compose objavljuje port samo kao `127.0.0.1:8080`; Nginx ostaje jedini javni ulaz. Za zaustavljanje demonstracije koristite `docker compose -f docker-compose.demo.yml down`.
+
+Na serveru je bolje da tajne nisu u repozitorijumu. Tada kopirati primer u `/etc/crnakobra/payments-demo.env`, postaviti dozvole `600` i koristiti:
+
+```bash
+PAYMENTS_DEMO_ENV_FILE=/etc/crnakobra/payments-demo.env \
+  docker compose -f docker-compose.demo.yml up -d --build
+```

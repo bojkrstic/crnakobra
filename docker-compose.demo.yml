@@ -1,11 +1,14 @@
 services:
-  payments-demo:
+  payments-api:
     build:
       context: ./payments-api
     image: crnakobra/payments-demo:local
+    container_name: crnakobra-payments-api
     restart: unless-stopped
+    # Na serveru postaviti PAYMENTS_DEMO_ENV_FILE=/etc/crnakobra/payments-demo.env.
+    # Bez te promenljive koristi se lokalni fajl za razvoj.
     env_file:
-      - ./payments-api/.env.demo
+      - ${PAYMENTS_DEMO_ENV_FILE:-./payments-api/.env.demo}
     # API je vidljiv samo Nginx-u na istom serveru, ne direktno internetu.
     ports:
       - "127.0.0.1:8080:8080"
