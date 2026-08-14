@@ -20,6 +20,8 @@ services:
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-crnakobra}:${POSTGRES_PASSWORD}@content-db:5432/${POSTGRES_DB:-crnakobra}?sslmode=disable
       LISTEN_ADDR: :8090
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Set ADMIN_EMAIL in content-app/.env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in content-app/.env}
     depends_on:
       content-db:
         condition: service_healthy

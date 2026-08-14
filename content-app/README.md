@@ -8,17 +8,17 @@ Prva faza uvodi PostgreSQL model za:
 - `camp` — kampove i manifestacije;
 - `gallery` — stavke galerije.
 
-Sledeća celina je prijava administratora i CRUD panel. Tek nakon toga se javne rute pažljivo povezuju sa postojećim stranicama.
+Administrator se prijavljuje na `http://localhost:8090/admin`. Panel omogućava unos, izmenu, objavu i brisanje vesti, kampova i stavki galerije, uključujući upload JPEG, PNG ili WebP slike. Slike se u ovoj razvojnoj fazi čuvaju u PostgreSQL bazi.
 
 ## Lokalno pokretanje
 
 ```bash
 cp content-app/.env.example content-app/.env
-# U content-app/.env upisati stvarnu, lokalnu POSTGRES_PASSWORD vrednost.
+# U content-app/.env upisati lokalne POSTGRES_PASSWORD, ADMIN_EMAIL i ADMIN_PASSWORD vrednosti.
 docker compose --env-file content-app/.env -f docker-compose.content.yml up --build
 ```
 
-Nakon pokretanja: `http://localhost:8090/health` mora vratiti `ok`.
+Nakon pokretanja: `http://localhost:8090/health` mora vratiti `ok`. Javne razvojne rute su `/vesti`, `/kampovi` i `/galerija`.
 
 Za gašenje koristiti `docker compose -f docker-compose.content.yml down`. Ne brisati `content-app/postgres-data/` ako želite sačuvati lokalne unose.
 
