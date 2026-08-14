@@ -26,7 +26,7 @@
 - Lokalno pokretanje: `docker compose --env-file content-app/.env -f docker-compose.content.yml up -d --build`. Prvo kopirati `.env.example` u `.env` i postaviti `POSTGRES_PASSWORD`, `ADMIN_EMAIL` i `ADMIN_PASSWORD`.
 - `/admin` je jedini administratorski ulaz. Administrator unosi vesti, kampove i fotografije; objavljeni sadržaj je javan, nacrti nisu.
 - Kamp i njegove fotografije su odvojeni zapisi: fotografija vrste `gallery` mora biti vezana poljem `camp_id` za konkretan zapis vrste `camp`.
-- `kampovi-i-manifestacije.html` je i dalje pretežno statična, ali lokalno preuzima dinamičke blokove `/dynamic/camps` i `/dynamic/camp-gallery`. Ne menjati te rute bez izmene statičnog JavaScript bloka.
+- Na `main` grani `kampovi-i-manifestacije.html` ostaje potpuno statična. Dinamičke rute (`/dynamic/camps` i `/dynamic/camp-gallery`) postoje u aplikaciji za buduće povezivanje; integracija sa statičnim HTML-om razvija se na `develop` grani.
 - Podaci, slike i admin sesije su u PostgreSQL bazi (`content-app/postgres-data/` lokalno), ne u Git-u. Ne commitovati `.env`, volume ili dump sa stvarnim podacima.
 - Pre produkcije su potrebni Nginx proxy za `/dynamic/` i `/admin`, HTTPS, backup baze/slika, i poseban staging klon/poddomen. Ne menjati produkcioni radni direktorijum sa `git switch develop`.
 

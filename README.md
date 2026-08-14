@@ -62,9 +62,9 @@ U `/admin` administrator može da kreira nacrt ili objavi:
 - kamp ili manifestaciju (naslov, datum, mesto, opis i naslovna fotografija);
 - fotografiju kampa.
 
-Fotografija kampa se vezuje za konkretan kamp kroz polje „Kamp kome pripada fotografija”. Objavljeni kampovi se prikazuju na `kampovi-i-manifestacije.html` u sekciji „Aktuelni kampovi i manifestacije”, a njihove fotografije u galeriji na istoj stranici.
+Fotografija kampa se vezuje za konkretan kamp kroz polje „Kamp kome pripada fotografija”. Objavljeni sadržaj se može pregledati na razvojnim rutama aplikacije (`/kampovi` i `/galerija`).
 
-Za lokalni pregled otvoriti `kampovi-i-manifestacije.html` u pregledaču dok Docker aplikacija radi, pa osvežiti stranicu nakon izmene u admin panelu.
+Na `main` grani postojeći statični HTML nije povezan sa ovom aplikacijom. Povezivanje dinamičkih blokova sa stranicom kampova ostaje zaseban razvojni korak na `develop` grani.
 
 ## Važne napomene
 
