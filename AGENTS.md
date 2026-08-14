@@ -4,7 +4,7 @@
 
 - Ovo je uglavnom statičan sajt Instituta za borilačke veštine i sportove Crna Kobra (Pirot): HTML, ugrađeni CSS i malo JavaScript-a; nema Node paketa ni build koraka.
 - Primarni sadržaj je na srpskom latinicom. `payments-language.js` dodaje LAT/ĆIR/EN prekidač na stranicama vezanim za planove i naplatu.
-- `main` je glavna grana. Postoji i udaljena `develop` grana, trenutno na istom commitu kao `main`.
+- `main` je glavna grana postojećeg javnog sajta. `develop` služi za razvoj dinamičkog dela i ne treba ga postavljati preko aktivnog `main` radnog direktorijuma na serveru.
 - Poslednje izmene početne strane dodale su najavu kampa i detalje Warrior Camp-a. Pre izmene sadržaja pogledati odgovarajući HTML, jer su stilovi najčešće ugrađeni u isti fajl.
 
 ## Mapa repozitorijuma
@@ -18,6 +18,17 @@
 - `payments-api/` — mali Go API samo za demonstraciju budućeg payment toka.
 - `slike/` — slike i video materijali; postojeće relativne putanje ne menjati bez provere svih referenci.
 - `deploy/` — šabloni za Nginx, systemd i Docker demo postavljanje.
+- `content-app/` i `docker-compose.content.yml` — razvojni Go/PostgreSQL admin za sadržaj. Ovo je trenutno samo na `develop` radnom toku, nije produkciono postavljanje.
+
+## Dinamički sadržaj na develop grani
+
+- `content-app` pokreće Go aplikaciju na `127.0.0.1:8090` i zaseban PostgreSQL kontejner.
+- Lokalno pokretanje: `docker compose --env-file content-app/.env -f docker-compose.content.yml up -d --build`. Prvo kopirati `.env.example` u `.env` i postaviti `POSTGRES_PASSWORD`, `ADMIN_EMAIL` i `ADMIN_PASSWORD`.
+- `/admin` je jedini administratorski ulaz. Administrator unosi vesti, kampove i fotografije; objavljeni sadržaj je javan, nacrti nisu.
+- Kamp i njegove fotografije su odvojeni zapisi: fotografija vrste `gallery` mora biti vezana poljem `camp_id` za konkretan zapis vrste `camp`.
+- `kampovi-i-manifestacije.html` je i dalje pretežno statična, ali lokalno preuzima dinamičke blokove `/dynamic/camps` i `/dynamic/camp-gallery`. Ne menjati te rute bez izmene statičnog JavaScript bloka.
+- Podaci, slike i admin sesije su u PostgreSQL bazi (`content-app/postgres-data/` lokalno), ne u Git-u. Ne commitovati `.env`, volume ili dump sa stvarnim podacima.
+- Pre produkcije su potrebni Nginx proxy za `/dynamic/` i `/admin`, HTTPS, backup baze/slika, i poseban staging klon/poddomen. Ne menjati produkcioni radni direktorijum sa `git switch develop`.
 
 ## Naplata: važne granice
 
