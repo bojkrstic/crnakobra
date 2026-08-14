@@ -7,3 +7,9 @@ slike/GoranKrstic/*.deb
 # Lokalno stanje i binarni fajlovi Go demo servisa
 payments-api/payments-api
 payments-api/.env.demo
+
+# Lokalno stanje dinamičkog sadržaja
+content-app/.env
+content-app/uploads/
+content-app/content-app
+content-app/postgres-data/
