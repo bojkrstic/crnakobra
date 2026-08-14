@@ -1,3 +1,3 @@
 module crnakobra/payments-api
 
-go 1.26
+go 1.21
