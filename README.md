@@ -76,3 +76,33 @@ Na `main` grani postojeći statični HTML nije povezan sa ovom aplikacijom. Pove
 ## Postojeći statični sajt
 
 Statične stranice se nalaze u korenu repozitorijuma. Na postojećem serveru je uobičajeni tok: `git pull`, zatim kopiranje izmenjenih HTML/JS fajlova u `/home/krle/html/crnakobra/`. Ne kopirati razvojnu verziju na javni sajt dok se ne proveri na odvojenom okruženju.
+
+## Kako ažurirati javni sajt
+
+Ove naredbe se pokreću nakon prijavljivanja na server. Javna verzija sajta se služi iz `/home/krle/html/crnakobra/`.
+
+```bash
+# 1. Uđi u klon sajta na serveru.
+cd ~/apps/crnakobra/crnakobra
+
+# 2. Preuzmi poslednje izmene sa GitHub-a.
+git pull
+
+# 3. Kopiraj statične stranice, skripte i sitemap u javni HTML direktorijum.
+cp index.html ishrana-i-hidratacija.html kampovi-i-manifestacije.html naruci-plan.html uspesna-uplata.html moji-planovi.html pravni-uslovi.html demo-portal.html demo-portal.js payments-language.js sitemap.xml /home/krle/html/crnakobra/
+
+# 4. Kada se menja knjiga, kopiraj ceo folder sa videima, QR kodovima i stranicom knjige.
+cp -a 'knjiga prvo izdanje' /home/krle/html/crnakobra/
+
+# 5. Za objavu samo knjige potrebne su ove dve komande.
+cp index.html /home/krle/html/crnakobra/index.html
+cp -a 'knjiga prvo izdanje' /home/krle/html/crnakobra/
+```
+
+Za pojedinačnu izmenu početne strane može se koristiti i:
+
+```bash
+cp index.html /home/krle/html/crnakobra/index.html
+```
+
+Napomena: nije potrebno menjati produkcioni radni direktorijum na granu `develop`; javni statični sajt se ažurira sa grane `main`.
