@@ -99,6 +99,19 @@ cp index.html /home/krle/html/crnakobra/index.html
 cp -a 'knjiga prvo izdanje' /home/krle/html/crnakobra/
 ```
 
+### Objavljivanje današnje aktivnosti i arhive
+
+Kada se menja „Današnja aktivnost”, na server treba kopirati i `index.html` i ceo folder `Arhiva/`, jer se fotografije aktivnosti čuvaju po datumima unutar tog foldera. Posle commita i slanja izmena na `main`, na serveru pokrenuti:
+
+```bash
+cd /home/krle/apps/crnakobra/crnakobra
+git pull --ff-only origin main
+cp index.html /home/krle/html/crnakobra/index.html
+cp -a Arhiva /home/krle/html/crnakobra/
+```
+
+Na primer, fotografija aktivnosti od 8. septembra 2026. nalazi se u `Arhiva/2026-09-08/`, a prethodna od 13. avgusta 2026. u `Arhiva/2026-08-13/`. Nazive ovih foldera zadržavati u formatu `GGGG-MM-DD`, da aktivnosti ostanu poredane po datumu.
+
 Za pojedinačnu izmenu početne strane može se koristiti i:
 
 ```bash
