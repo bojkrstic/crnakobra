@@ -99,6 +99,19 @@ cp index.html /home/krle/html/crnakobra/index.html
 cp -a 'knjiga prvo izdanje' /home/krle/html/crnakobra/
 ```
 
+### Objavljivanje treninga sa lancima
+
+Sekcija „Trening u teretani sa lancima” na početnoj strani koristi nove fajlove iz foldera `slike/Lanci/`. Posle commita i slanja izmena na `main`, na serveru pokrenuti:
+
+```bash
+cd /home/krle/apps/crnakobra/crnakobra
+git pull --ff-only origin main
+cp index.html /home/krle/html/crnakobra/index.html
+cp -a slike/Lanci /home/krle/html/crnakobra/slike/
+```
+
+Poslednja komanda kopira i fotografiju postera i MP4 snimak; bez nje video na javnom sajtu neće biti dostupan.
+
 ### Objavljivanje današnje aktivnosti i arhive
 
 Kada se menja „Današnja aktivnost”, na server treba kopirati i `index.html` i ceo folder `Arhiva/`, jer se fotografije aktivnosti čuvaju po datumima unutar tog foldera. Posle commita i slanja izmena na `main`, na serveru pokrenuti:
